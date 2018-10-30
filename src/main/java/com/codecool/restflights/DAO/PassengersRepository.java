@@ -18,7 +18,6 @@ public interface PassengersRepository extends JpaRepository<Passenger, Long> {
 
     List<Passenger> findAll();
     Passenger save(Passenger passenger);
-
-//    void deletePassengerByPassengerId(@Param("id") long id); // not needed
+    void deletePassengerByPassengerId(long id);
 
 }
