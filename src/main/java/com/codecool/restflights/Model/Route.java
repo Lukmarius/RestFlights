@@ -1,41 +1,51 @@
-//package com.codecool.restflights.Model;
-//
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//
-//@Entity
-//public class Route {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private long relation_id;
-//    private String from_airport;
-//    private String destination_airport;
-//    private int distance;
-//
-//    public void setFrom_airport(String from_airport) {
-//        this.from_airport = from_airport;
-//    }
-//
-//    public void setDestination_airport(String destination_airport) {
-//        this.destination_airport = destination_airport;
-//    }
-//
-//    public long getRelation_id() {
-//        return relation_id;
-//    }
-//
-//    public String getFrom_airport() {
-//        return from_airport;
-//    }
-//
-//    public String getDestination_airport() {
-//        return destination_airport;
-//    }
-//
-//    public int getDistance() {
-//        return distance;
-//    }
-//}
+package com.codecool.restflights.Model;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "routes")
+public class Route {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "relation_id")
+    private long relationId;
+
+    @Column(name = "fromAirport")
+    private String fromAirport;
+
+    @Column(name = "destinationAirport")
+    private String destinationAirport;
+
+    private int distance;
+
+
+
+    public void setFromAirport(String fromAirport) {
+        this.fromAirport = fromAirport;
+    }
+
+    public void setDestinationAirport(String destinationAirport) {
+        this.destinationAirport = destinationAirport;
+    }
+
+    public long getRelationId() {
+        return relationId;
+    }
+
+    public String getFromAirport() {
+        return fromAirport;
+    }
+
+    public String getDestinationAirport() {
+        return destinationAirport;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+}
