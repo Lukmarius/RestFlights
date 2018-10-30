@@ -10,8 +10,9 @@ import java.util.List;
 @RepositoryRestResource(path = "airports", collectionResourceRel = "airports")
 public interface AirportsRepository extends PagingAndSortingRepository<Airport, String> {
 
-    List<Airport> findAirportByCity(@Param("city") String city);
-    List<Airport> findAirportByAirportId(@Param("id") String id);
+    List<Airport> findAirportsByCity(@Param("city") String city);
+    Airport findAirportByAirportId(@Param("id") String id);
     List<Airport> findAirportsByCountry(@Param("country") String country);
+    List<Airport> findAll();
 
 }

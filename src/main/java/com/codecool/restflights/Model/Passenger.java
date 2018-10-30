@@ -7,9 +7,10 @@ import javax.persistence.*;
 public class Passenger {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "passenger_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long passengerId;
+
     private String firstname;
     private String lastname;
 

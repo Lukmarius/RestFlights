@@ -1,8 +1,5 @@
 package com.codecool.restflights.Model;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "airports")
@@ -10,7 +7,9 @@ public class Airport {
 
     @Id
     @Column(name = "airport_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String airportId;
+
     private String city;
     private String country;
     private double latitude;
