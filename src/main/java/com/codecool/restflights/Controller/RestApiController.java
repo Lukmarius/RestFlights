@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-//@RequestMapping("api2")
+import java.util.List;
+
+@RequestMapping("2api")
 @RestController
 public class RestApiController {
 
@@ -17,16 +19,22 @@ public class RestApiController {
         this.passengerService = passengerService;
     }
 
-    @DeleteMapping("api2/passengers/{id}")
+    @DeleteMapping("/passengers/{id}")
     @Transactional
     public void deletePassenger(@PathVariable(name = "id") long id){
         System.out.println("_______________________DELETED_____!!!!!_________"+id);
         passengerService.deletePassengerByPassengerId(id);
     }
 
-    @GetMapping("api2/passengers/{id}")
+    @GetMapping("/passengers/{id}")
     public Passenger getPassenger(@PathVariable(name = "id") long id){
         System.out.println("_______________________GET_____!!!!!_________"+id);
         return passengerService.findPassengerByPassengerId(id);
+    }
+
+    @GetMapping("/passengers")
+    public List<Passenger> getAllPassengers(){
+        System.out.println("_______________________GET_____!!!!!_________");
+        return passengerService.findAll();
     }
 }
