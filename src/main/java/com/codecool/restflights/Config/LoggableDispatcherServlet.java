@@ -40,27 +40,23 @@ public class LoggableDispatcherServlet extends DispatcherServlet {
     }
 
     private void log(HttpServletRequest requestToCache, HttpServletResponse responseToCache, HandlerExecutionChain handler) {
-
-//        LogMessage log = new LogMessage();
-//        log.setHttpStatus(responseToCache.getStatus());
-//        log.setHttpMethod(requestToCache.getMethod());
-//        log.setPath(requestToCache.getRequestURI());
-//        log.setClientIp(requestToCache.getRemoteAddr());
-//        log.setJavaMethod(handler.toString());
-//        log.setResponse(getResponsePayload(responseToCache));
         StringBuilder log = new StringBuilder();
+
+        log.append(" ---- ");
         log.append(responseToCache.getStatus());
         log.append(" ---- ");
         log.append(requestToCache.getMethod());
         log.append(" ---- ");
         log.append(requestToCache.getRequestURI());
-        log.append(" ---- ");
-        log.append(requestToCache.getRemoteAddr());
-        log.append(" ---- ");
-        log.append(handler.toString());
-        log.append(" ---- ");
-        log.append(getResponsePayload(responseToCache));
-        logger.info(log);
+        log.append(" -");
+//        log.append(requestToCache.getRemoteAddr());
+//        log.append(" ---- ");
+//        log.append(handler.toString());
+//        log.append(" ---- ");
+//        log.append(getResponsePayload(responseToCache));
+        if ( ! requestToCache.getRequestURI().equals("/favicon.ico")){
+            logger.info(log);
+        }
     }
 
     private String getResponsePayload(HttpServletResponse response) {
