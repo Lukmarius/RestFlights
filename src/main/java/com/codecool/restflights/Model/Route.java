@@ -1,10 +1,12 @@
 package com.codecool.restflights.Model;
 
+import org.springframework.hateoas.ResourceSupport;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "routes")
-public class Route {
+public class Route extends ResourceSupport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,39 +2,41 @@ package com.codecool.restflights.Controller;
 
 import com.codecool.restflights.Model.Passenger;
 import com.codecool.restflights.Service.PassengerService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("2api")
+@RequestMapping("2api/passengers")
 @RestController
-public class RestApiController {
+public class PassengersRestController {
 
     private PassengerService passengerService;
+    private static final Logger logger = Logger.getLogger(PassengersRestController.class);
 
     @Autowired
-    public RestApiController(PassengerService passengerService) {
+    public PassengersRestController(PassengerService passengerService) {
         this.passengerService = passengerService;
     }
 
-    @DeleteMapping("/passengers/{id}")
+    @DeleteMapping("/{id}")
     @Transactional
     public void deletePassenger(@PathVariable(name = "id") long id){
-        System.out.println("_______________________DELETED_____!!!!!_________"+id);
         passengerService.deletePassengerByPassengerId(id);
+        logger.info("DELETE 2api/passengers/"+id);
     }
 
-    @GetMapping("/passengers/{id}")
+    @GetMapping("/{id}")
     public Passenger getPassenger(@PathVariable(name = "id") long id){
-        System.out.println("_______________________GET_____!!!!!_________"+id);
+
         return passengerService.findPassengerByPassengerId(id);
     }
 
-    @GetMapping("/passengers")
+    @GetMapping("")
     public List<Passenger> getAllPassengers(){
-        System.out.println("_______________________GET_____!!!!!_________");
+
         return passengerService.findAll();
     }
 }
