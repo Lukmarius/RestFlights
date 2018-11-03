@@ -1,7 +1,8 @@
-package com.codecool.restflights.Service;
+package com.codecool.restflights.Service.Implementations;
 
 import com.codecool.restflights.DAO.PassengersRepository;
 import com.codecool.restflights.Model.Passenger;
+import com.codecool.restflights.Service.Intarfaces.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

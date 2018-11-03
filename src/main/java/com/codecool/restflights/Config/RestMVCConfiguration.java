@@ -1,6 +1,6 @@
 package com.codecool.restflights.Config;
 
-import com.codecool.restflights.Service.LoggableDispatcherServlet;
+import com.codecool.restflights.Service.Implementations.LoggableDispatcherServlet;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;

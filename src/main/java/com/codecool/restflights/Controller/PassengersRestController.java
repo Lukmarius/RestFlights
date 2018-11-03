@@ -1,8 +1,7 @@
 package com.codecool.restflights.Controller;
 
 import com.codecool.restflights.Model.Passenger;
-import com.codecool.restflights.Service.PassengerService;
-import org.apache.log4j.Logger;
+import com.codecool.restflights.Service.Intarfaces.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;

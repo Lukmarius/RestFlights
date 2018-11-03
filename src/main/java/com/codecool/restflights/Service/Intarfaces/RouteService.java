@@ -1,4 +1,4 @@
-package com.codecool.restflights.Service;
+package com.codecool.restflights.Service.Intarfaces;
 
 import com.codecool.restflights.Model.Route;
 

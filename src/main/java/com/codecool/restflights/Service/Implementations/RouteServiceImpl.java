@@ -1,7 +1,8 @@
-package com.codecool.restflights.Service;
+package com.codecool.restflights.Service.Implementations;
 
 import com.codecool.restflights.DAO.RoutesRepository;
 import com.codecool.restflights.Model.Route;
+import com.codecool.restflights.Service.Intarfaces.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
