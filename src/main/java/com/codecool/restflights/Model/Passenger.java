@@ -14,12 +14,22 @@ public class Passenger {
     private String firstname;
     private String lastname;
 
+    private boolean active;
+
     public Passenger() {
     }
 
     public Passenger(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void setFirstname(String firstname) {

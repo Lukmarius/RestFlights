@@ -15,4 +15,9 @@ public interface AirportsRepository extends PagingAndSortingRepository<Airport, 
     List<Airport> findAirportsByCountry(@Param("country") String country);
     List<Airport> findAll();
 
+    List<Airport> findAirportsByCityAndActiveTrue(@Param("city") String city);
+    Airport findAirportByAirportIdAndActiveTrue(@Param("id") String id);
+    List<Airport> findAirportsByCountryAndActiveTrue(@Param("country") String country);
+    List<Airport> findAllByActiveTrue();
+
 }

@@ -1,5 +1,6 @@
 package com.codecool.restflights.Config;
 
+import com.codecool.restflights.Service.LoggableDispatcherServlet;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +20,7 @@ class RestMVCConfiguration {
 
             @Override
             public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-                config.setBasePath("/api");
+                config.setBasePath("/2api");
                 config.setReturnBodyForPutAndPost(true);
                 config.setReturnBodyOnCreate(true);
                 config.setReturnBodyOnUpdate(true);

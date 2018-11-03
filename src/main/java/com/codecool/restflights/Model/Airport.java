@@ -7,14 +7,21 @@ public class Airport {
 
     @Id
     @Column(name = "airport_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String airportId;
 
     private String city;
     private String country;
     private double latitude;
     private double longitude;
+    private boolean active;
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public String getAirportId() {
         return airportId;

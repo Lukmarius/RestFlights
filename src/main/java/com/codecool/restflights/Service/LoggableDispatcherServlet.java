@@ -1,4 +1,4 @@
-package com.codecool.restflights.Config;
+package com.codecool.restflights.Service;
 
 import com.codecool.restflights.Controller.RoutesRestController;
 import org.apache.log4j.Logger;

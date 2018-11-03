@@ -21,7 +21,15 @@ public class Route extends ResourceSupport {
 
     private int distance;
 
+    private boolean active;
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public void setFromAirport(String fromAirport) {
         this.fromAirport = fromAirport;

@@ -8,23 +8,33 @@ public class Flight {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "flightId")
+    @Column(name = "flight_id")
     private long flightId;
 
-    @Column(name = "relationId")
+    @Column(name = "relatio_id")
     private long relationId;
 
-    @Column(name = "planeId")
+    @Column(name = "plane_id")
     private long planeId;
 
     private double price;
 
-    @Column(name = "captainId")
+    @Column(name = "captain_id")
     private long captainId;
 
     private String startdate;
 
     private String enddate;
+
+    private boolean active;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public void setFlightId(long flightId) {
         this.flightId = flightId;
