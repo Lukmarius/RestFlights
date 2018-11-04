@@ -2,6 +2,10 @@ package com.codecool.restflights.Model;
 
 import javax.persistence.*;
 
+
+//
+// ----------------------- NOT HANDLED BY ORM YET -----------------
+//
 @Entity
 @Table(name = "flights")
 public class Flight {

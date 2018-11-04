@@ -16,9 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-public class LoggableDispatcherServlet extends DispatcherServlet {
+public class LoggingDispatcherServlet extends DispatcherServlet {
 
-//    private final Log logger = LogFactory.getLog(getClass());
     private final Logger logger = Logger.getLogger(getClass());
 
     @Override

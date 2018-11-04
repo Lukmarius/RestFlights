@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS airports CASCADE;
 DROP TABLE IF EXISTS tickets CASCADE;
 DROP TYPE IF EXISTS role;
 
+
 CREATE TYPE role AS ENUM ('user', 'manager');
 
 create table if not exists users
@@ -176,6 +177,7 @@ create unique index if not exists tickets_ticket_id_uindex
 	on tickets (ticket_id)
 ;
 -- --------------------------------- TRIGGERS ------------------------------------------------
+
 -- creating seats after created plane:
 
 CREATE OR REPLACE FUNCTION create_seats() RETURNS TRIGGER AS $$
@@ -225,21 +227,21 @@ CREATE TRIGGER flights_trigger BEFORE INSERT ON flights
 -- --------------------------------- FILL FROM CSV -------------------------------------------
 
 COPY airports(airport_id, city, country, latitude, longitude)
-FROM '/home/mariusz/PycharmProjects/flyerTables/csv_files/airports.csv' with csv delimiter ',';
+FROM '/home/mariusz/IdeaProjects/restflights/src/main/resources/csv_files/airports.csv' with csv delimiter ',';
 --
 COPY users(first_name, last_name, email, password, phone_number, country, city, adress, role)
-FROM '/home/mariusz/PycharmProjects/flyerTables/csv_files/users.csv' with csv delimiter ',';
+FROM '----------------------/restflights/src/main/resources/csv_files/users.csv' with csv delimiter ',';
 --
 COPY crew(first_name, last_name, function)
-FROM '/home/mariusz/PycharmProjects/flyerTables/csv_files/crew.csv' with csv delimiter ',';
+FROM '----------------------/restflights/src/main/resources//csv_files/crew.csv' with csv delimiter ',';
 --
 COPY passengers(firstname, lastname)
-FROM '/home/mariusz/PycharmProjects/flyerTables/csv_files/passengers.csv' with csv delimiter ',';
+FROM '----------------------/restflights/src/main/resources//csv_files/passengers.csv' with csv delimiter ',';
 --
 COPY planes(seats_amount)
-FROM '/home/mariusz/PycharmProjects/flyerTables/csv_files/planes.csv' with csv delimiter ',';
+FROM '----------------------/restflights/src/main/resources//csv_files/planes.csv' with csv delimiter ',';
 --
 COPY routes(from_airport, destination_airport, distance)
-FROM '/home/mariusz/PycharmProjects/flyerTables/csv_files/routes.csv' with csv delimiter ',';
+FROM '----------------------/restflights/src/main/resources//csv_files/routes.csv' with csv delimiter ',';
 
 

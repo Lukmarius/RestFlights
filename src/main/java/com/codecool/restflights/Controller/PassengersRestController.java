@@ -15,6 +15,7 @@ public class PassengersRestController {
 
     private PassengerService passengerService;
 
+//    Now, we have to implement only ActivePassengerService (for safe deleting)
     @Autowired
     public PassengersRestController(@Qualifier("ActivePassengerServiceImpl") PassengerService passengerService) {
         this.passengerService = passengerService;
