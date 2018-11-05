@@ -21,7 +21,7 @@ Comming soon:
 * front-end (React or Angular)
 
 ## How to prepare DB before running server:
-* optionally create new databes in outer IDE / console (without tables of course)
+* optionally create new database in outer IDE / console (without tables of course)
 * in all_tables_init.sql specify your paths, directing to .csv files in resources folder
 * in application.properties configure your database connection
 * run all_tables_init.sql
