@@ -1,6 +1,8 @@
 package com.codecool.restflights.DAO;
 
 import com.codecool.restflights.Model.Route;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -15,5 +17,6 @@ public interface RoutesRepository extends JpaRepository<Route, Long> {
     List<Route> findRoutesByDestinationAirport(@Param("to") String to);
     Route findRouteByRelationId(@Param("id") long id);
     List<Route> findAll();
+    Page<Route> findAll(Pageable pageable);
 
 }

@@ -4,6 +4,9 @@ import com.codecool.restflights.DAO.RoutesRepository;
 import com.codecool.restflights.Model.Route;
 import com.codecool.restflights.Service.Intarfaces.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,4 +45,11 @@ public class RouteServiceImpl implements RouteService {
     public List<Route> findAll() {
         return routesRepository.findAll();
     }
+
+    @Override
+    public Page<Route> findAll(int page, int size) {
+        return routesRepository.findAll(new PageRequest(page, size));
+    }
+
+
 }

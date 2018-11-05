@@ -4,14 +4,15 @@ import com.codecool.restflights.Model.Airport;
 import com.codecool.restflights.Model.Route;
 import com.codecool.restflights.Service.Intarfaces.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.Link;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +33,10 @@ public class RoutesRestController {
     public Route getRoute(@PathVariable long id){
 
         Route route = routeService.findRouteByRelationId(id);
+        if (route == null){
+            throw new ResourceNotFoundException();
+        }
+
         // creating links into json
         Link link1 = entityLinks.linkToSingleResource(Airport.class, route.getFromAirport());
         Link link2 = entityLinks.linkToSingleResource(Airport.class, route.getDestinationAirport());
@@ -40,15 +45,22 @@ public class RoutesRestController {
         return route;
     }
 
-    @GetMapping("")
-    public List<Route> getAllRoutes(){
+    @GetMapping(value = "", params = {"page", "size"})
+    public List<Route> getAllRoutes(@RequestParam( "page" ) int page, @RequestParam( "size" ) int size,
+                                    UriComponentsBuilder uriBuilder, HttpServletResponse response ){
 
-        List<Route> list = routeService.findAll();
-        for (Route route : list){
+        Page <Route> resultPage = routeService.findAll(page, size);
+        if( page > resultPage.getTotalPages() ) {
+            throw new ResourceNotFoundException();
+        }
+//        eventPublisher.publishEvent( new PaginatedResultsRetrievedEvent< Foo >
+//                ( Foo.class, uriBuilder, response, page, resultPage.getTotalPages(), size ) );
+//
+        for (Route route : resultPage){
             Link link1 = entityLinks.linkToSingleResource(Airport.class, route.getFromAirport());
             Link link2 = entityLinks.linkToSingleResource(Airport.class, route.getDestinationAirport());
             route.add(Arrays.asList(link1, link2));
         }
-        return list;
+        return resultPage.getContent();
     }
 }
