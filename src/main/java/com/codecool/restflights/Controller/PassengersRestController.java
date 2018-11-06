@@ -63,13 +63,13 @@ public class PassengersRestController {
 //    }
 
     @GetMapping("")
-    public ResponseEntity<PagedResources< Passenger >> AllRoutes(Pageable pageable, PagedResourcesAssembler assembler) {
-        Page< Passenger > routes = passengerService.findAllOnPage(pageable);
-        PagedResources < Passenger > pr = assembler.toResource(routes,
+    public ResponseEntity<PagedResources< Passenger >> AllPassengers(Pageable pageable, PagedResourcesAssembler assembler) {
+        Page< Passenger > passengers = passengerService.findAllOnPage(pageable);
+        PagedResources < Passenger > pr = assembler.toResource(passengers,
                 linkTo(RoutesRestController.class).slash("/").withSelfRel());
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.add("Link", createLinkHeader(pr));
-        return new ResponseEntity < > (assembler.toResource(routes,
+        return new ResponseEntity < > (assembler.toResource(passengers,
                 linkTo(RoutesRestController.class).slash("/").withSelfRel()), responseHeaders, HttpStatus.OK);
     }
 
