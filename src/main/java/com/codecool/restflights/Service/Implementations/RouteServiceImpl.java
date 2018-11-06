@@ -42,13 +42,17 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public List<Route> findAll() {
+    public List<Route> findAllOnPage() {
         return routesRepository.findAll();
     }
 
-    @Override
-    public Page<Route> findAll(int page, int size) {
+    public Page<Route> findAllOnPage(int page, int size) {
         return routesRepository.findAll(new PageRequest(page, size));
+    }
+
+    @Override
+    public Page<Route> findAllOnPage(Pageable pageable) {
+        return routesRepository.findAll(pageable);
     }
 
 

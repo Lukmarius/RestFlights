@@ -12,6 +12,7 @@ public interface RouteService {
     List<Route> findRoutesByFromAirport(String from);
     List<Route> findRoutesByDestinationAirport(String to);
     Route findRouteByRelationId(long id);
-    List<Route> findAll();
-    Page<Route> findAll(int page, int size);
+    List<Route> findAllOnPage();
+    Page<Route> findAllOnPage(Pageable pageable);
+
 }
