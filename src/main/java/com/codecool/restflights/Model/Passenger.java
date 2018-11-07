@@ -1,5 +1,7 @@
 package com.codecool.restflights.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class Passenger {
     private String firstname;
     private String lastname;
 
+    @JsonIgnore
     private boolean active;
 
     public Passenger() {

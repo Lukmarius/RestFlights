@@ -12,7 +12,7 @@ public interface PassengerService {
     Passenger findPassengerByPassengerId(long id);
     List<Passenger> findPassengersByFirstname(String name);
 
-    List<Passenger> findAll();
+//    List<Passenger> findAll();
     Page<Passenger> findAllOnPage(Pageable pageable);
     Passenger save(Passenger passenger);
 

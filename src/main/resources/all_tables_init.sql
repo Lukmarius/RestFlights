@@ -10,6 +10,14 @@ DROP TABLE IF EXISTS airports CASCADE;
 DROP TABLE IF EXISTS tickets CASCADE;
 DROP TYPE IF EXISTS role;
 
+DROP unique index if exists crew_employee_id_uindex;
+DROP unique index if exists crew_employee_id_uindex;
+DROP unique index if exists planes_plane_id_uindex;
+DROP unique index if exists passengers_passenger_id_uindex;
+DROP unique index if exists seats_seat_id_uindex;
+DROP unique index if exists routes_relationid_uindex;
+DROP unique index if exists flights_flight_id_uindex;
+DROP unique index if exists tickets_ticket_id_uindex;
 
 CREATE TYPE role AS ENUM ('user', 'manager');
 
@@ -230,18 +238,18 @@ COPY airports(airport_id, city, country, latitude, longitude)
 FROM '/home/mariusz/IdeaProjects/restflights/src/main/resources/csv_files/airports.csv' with csv delimiter ',';
 --
 COPY users(first_name, last_name, email, password, phone_number, country, city, adress, role)
-FROM '----------------------/restflights/src/main/resources/csv_files/users.csv' with csv delimiter ',';
+FROM '/home/mariusz/IdeaProjects/restflights/src/main/resources/csv_files/users.csv' with csv delimiter ',';
 --
 COPY crew(first_name, last_name, function)
-FROM '----------------------/restflights/src/main/resources//csv_files/crew.csv' with csv delimiter ',';
+FROM '/home/mariusz/IdeaProjects/restflights/src/main/resources//csv_files/crew.csv' with csv delimiter ',';
 --
 COPY passengers(firstname, lastname)
-FROM '----------------------/restflights/src/main/resources//csv_files/passengers.csv' with csv delimiter ',';
+FROM '/home/mariusz/IdeaProjects/restflights/src/main/resources//csv_files/passengers.csv' with csv delimiter ',';
 --
 COPY planes(seats_amount)
-FROM '----------------------/restflights/src/main/resources//csv_files/planes.csv' with csv delimiter ',';
+FROM '/home/mariusz/IdeaProjects/restflights/src/main/resources//csv_files/planes.csv' with csv delimiter ',';
 --
 COPY routes(from_airport, destination_airport, distance)
-FROM '----------------------/restflights/src/main/resources//csv_files/routes.csv' with csv delimiter ',';
+FROM '/home/mariusz/IdeaProjects/restflights/src/main/resources//csv_files/routes.csv' with csv delimiter ',';
 
 

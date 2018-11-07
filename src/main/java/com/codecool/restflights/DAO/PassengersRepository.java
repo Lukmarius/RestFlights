@@ -24,6 +24,7 @@ public interface PassengersRepository extends JpaRepository<Passenger, Long> {
 
     Passenger findPassengerByPassengerIdAndActiveTrue(@Param("id") long id);
     List<Passenger> findPassengersByFirstnameAndActiveTrue(@Param("name") String name);
+//    List<Passenger> findAllByActiveTrue(); // causing internal error
     Page<Passenger> findAllByActiveTrue(Pageable pageable);
 
 }

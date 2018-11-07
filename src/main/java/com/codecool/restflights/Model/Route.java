@@ -1,5 +1,6 @@
 package com.codecool.restflights.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.hateoas.ResourceSupport;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Route extends ResourceSupport {
 
     private int distance;
 
+    @JsonIgnore
     private boolean active;
 
     public boolean isActive() {

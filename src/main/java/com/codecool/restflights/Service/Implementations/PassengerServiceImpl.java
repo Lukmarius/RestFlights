@@ -30,10 +30,10 @@ public class PassengerServiceImpl implements PassengerService {
         return passengersRepository.findPassengersByFirstname(name);
     }
 
-    @Override
-    public List<Passenger> findAll() {
-        return passengersRepository.findAll();
-    }
+//    @Override
+//    public List<Passenger> findAll() {
+//        return passengersRepository.findAll();
+//    }
 
     @Override
     public Page<Passenger> findAllOnPage(Pageable pageable) {

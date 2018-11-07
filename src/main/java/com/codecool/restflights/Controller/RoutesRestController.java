@@ -69,22 +69,22 @@ public class RoutesRestController {
 //    }
 
     @GetMapping("")
-    public ResponseEntity<PagedResources< Route >> AllRoutes(Pageable pageable, PagedResourcesAssembler assembler) {
-        Page < Route > routes = routeService.findAllOnPage(pageable);
+    public ResponseEntity<PagedResources<Route>> AllRoutes(Pageable pageable, PagedResourcesAssembler assembler) {
+        Page <Route> routes = routeService.findAllOnPage(pageable);
         addAirportLinksToRoute(routes);
-        PagedResources < Route > pr = assembler.toResource(routes,
+        PagedResources <Route> pagedResources = assembler.toResource(routes,
                 linkTo(RoutesRestController.class).slash("/").withSelfRel());
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.add("Link", createLinkHeader(pr));
-        return new ResponseEntity < > (assembler.toResource(routes,
+        responseHeaders.add("Link", createLinkHeader(pagedResources));
+        return new ResponseEntity < PagedResources<Route>> (assembler.toResource(routes,
                 linkTo(RoutesRestController.class).slash("/").withSelfRel()), responseHeaders, HttpStatus.OK);
     }
 
-    private String createLinkHeader(PagedResources < Route > pr) {
+    private String createLinkHeader(PagedResources < Route > routePagedResources) {
         final StringBuilder linkHeader = new StringBuilder();
-        linkHeader.append(buildLinkHeader(pr.getLinks("first").get(0).getHref(), "first"));
+        linkHeader.append(buildLinkHeader(routePagedResources.getLinks("first").get(0).getHref(), "first"));
         linkHeader.append(", ");
-        linkHeader.append(buildLinkHeader(pr.getLinks("next").get(0).getHref(), "next"));
+        linkHeader.append(buildLinkHeader(routePagedResources.getLinks("next").get(0).getHref(), "next"));
         return linkHeader.toString();
     }
 
