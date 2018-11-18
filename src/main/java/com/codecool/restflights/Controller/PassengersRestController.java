@@ -4,6 +4,7 @@ import com.codecool.restflights.Model.Airport;
 import com.codecool.restflights.Model.Passenger;
 import com.codecool.restflights.Model.Route;
 import com.codecool.restflights.Service.Intarfaces.PassengerService;
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -35,17 +36,6 @@ public class PassengersRestController {
         this.passengerService = passengerService;
     }
 
-    @DeleteMapping("/{id}")
-    @Transactional
-    public void deletePassenger(@PathVariable(name = "id") long id){
-        Passenger passenger = passengerService.findPassengerByPassengerId(id);
-        if (passenger == null){
-            throw new ResourceNotFoundException();
-        }
-
-        passengerService.deletePassengerByPassengerId(id);
-    }
-
     @GetMapping("/{id}")
     public Passenger getPassenger(@PathVariable(name = "id") long id){
         Passenger passenger = passengerService.findPassengerByPassengerId(id);
@@ -56,19 +46,46 @@ public class PassengersRestController {
         return passengerService.findPassengerByPassengerId(id);
     }
 
-//    @GetMapping("")
-//    public List<Passenger> getAllPassengers(){
-//
-//        return passengerService.findAll();
-//    }
+    @PostMapping(path = "/", consumes = "application/json")
+    public Passenger addPassenger(@RequestBody Passenger reqPassenger){
+        passengerService.save(reqPassenger);
+        return reqPassenger;
+    }
+
+    @PutMapping(path = "/{id}", consumes = "application/json")
+    public Passenger updatePassenger(@PathVariable(name = "id") long id,
+                                     @RequestBody Passenger reqPassenger){
+        Passenger updatingPassenger = passengerService.findPassengerByPassengerId(id);
+        if (updatingPassenger == null){
+            throw new ResourceNotFoundException();
+        }
+        updatingPassenger.setFirstname(reqPassenger.getFirstname());
+        updatingPassenger.setLastname(reqPassenger.getLastname());
+
+        passengerService.save(updatingPassenger);
+
+        return updatingPassenger;
+    }
+
+//    @Transactional
+    @DeleteMapping("/{id}")
+    public void deletePassenger(@PathVariable(name = "id") long id){
+        Passenger passenger = passengerService.findPassengerByPassengerId(id);
+        if (passenger == null){
+            throw new ResourceNotFoundException();
+        }
+
+        passengerService.deletePassengerByPassengerId(id);
+    }
+
 
     @GetMapping("")
     public ResponseEntity<PagedResources<Passenger>> AllPassengers(Pageable pageable, PagedResourcesAssembler assembler) {
         Page<Passenger> passengers = passengerService.findAllOnPage(pageable);
-        PagedResources < Passenger > pr = assembler.toResource(passengers,
+        PagedResources < Passenger > pagedResources = assembler.toResource(passengers,
                 linkTo(PassengersRestController.class).slash("/").withSelfRel());
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.add("Link", createLinkHeader(pr));
+        responseHeaders.add("Link", createLinkHeader(pagedResources));
         return new ResponseEntity < > (assembler.toResource(passengers,
                 linkTo(PassengersRestController.class).slash("/").withSelfRel()), responseHeaders, HttpStatus.OK);
     }

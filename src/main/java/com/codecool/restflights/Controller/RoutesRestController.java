@@ -10,6 +10,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.LinkBuilder;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

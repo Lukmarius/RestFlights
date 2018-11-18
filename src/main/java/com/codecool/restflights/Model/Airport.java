@@ -1,4 +1,6 @@
 package com.codecool.restflights.Model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,8 @@ public class Airport {
     private String country;
     private double latitude;
     private double longitude;
+
+    @JsonIgnore
     private boolean active;
 
     public boolean isActive() {

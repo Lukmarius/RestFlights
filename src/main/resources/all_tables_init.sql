@@ -75,7 +75,7 @@ create table if not exists passengers
 	passenger_id bigserial not null
 		constraint passengers_pkey
 			primary key,
-	firstname varchar not null,
+	firstname varchar,
 	lastname varchar not null,
 	active boolean DEFAULT true
 )
