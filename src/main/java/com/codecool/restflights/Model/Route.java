@@ -22,6 +22,8 @@ public class Route extends ResourceSupport {
 
     private int distance;
 
+//    private Airport from;
+
     @JsonIgnore
     private boolean active;
 

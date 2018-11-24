@@ -84,9 +84,14 @@ public class RoutesRestController {
     private String createLinkHeader(PagedResources < Route > routePagedResources) {
         final StringBuilder linkHeader = new StringBuilder();
         linkHeader.append(buildLinkHeader(routePagedResources.getLinks("first").get(0).getHref(), "first"));
-        linkHeader.append(", ");
-        linkHeader.append(buildLinkHeader(routePagedResources.getLinks("next").get(0).getHref(), "next"));
-        return linkHeader.toString();
+        try{
+            linkHeader.append(", ");
+            linkHeader.append(buildLinkHeader(routePagedResources.getLinks("next").get(0).getHref(), "next"));
+        }catch (IndexOutOfBoundsException e){
+
+        }finally {
+            return linkHeader.toString();
+        }
     }
 
     private String buildLinkHeader(final String uri, final String rel) {
