@@ -13,7 +13,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 @Configuration
 class RestMVCConfiguration {
 
-    // configuration of "/2api" API, without controllers
+    // configuration of "/api" API, without controllers
     @Bean
     public RepositoryRestConfigurer repositoryRestConfigurer() {
 
@@ -21,7 +21,7 @@ class RestMVCConfiguration {
 
             @Override
             public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-                config.setBasePath("/2api");
+                config.setBasePath("api/");
                 config.setReturnBodyForPutAndPost(true);
                 config.setReturnBodyOnCreate(true);
                 config.setReturnBodyOnUpdate(true);

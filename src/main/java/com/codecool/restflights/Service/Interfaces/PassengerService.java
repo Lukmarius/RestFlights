@@ -1,9 +1,8 @@
-package com.codecool.restflights.Service.Intarfaces;
+package com.codecool.restflights.Service.Interfaces;
 
 import com.codecool.restflights.Model.Passenger;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

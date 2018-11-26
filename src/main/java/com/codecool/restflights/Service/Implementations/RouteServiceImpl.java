@@ -2,7 +2,7 @@ package com.codecool.restflights.Service.Implementations;
 
 import com.codecool.restflights.DAO.RoutesRepository;
 import com.codecool.restflights.Model.Route;
-import com.codecool.restflights.Service.Intarfaces.RouteService;
+import com.codecool.restflights.Service.Interfaces.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

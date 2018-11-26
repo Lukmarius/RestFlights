@@ -1,4 +1,4 @@
-package com.codecool.restflights.Service.Intarfaces;
+package com.codecool.restflights.Service.Interfaces;
 
 import com.codecool.restflights.Model.Route;
 import org.springframework.data.domain.Page;

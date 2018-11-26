@@ -2,7 +2,7 @@ package com.codecool.restflights.Controller;
 
 import com.codecool.restflights.Model.Airport;
 import com.codecool.restflights.Model.Route;
-import com.codecool.restflights.Service.Intarfaces.RouteService;
+import com.codecool.restflights.Service.Interfaces.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +10,6 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.LinkBuilder;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

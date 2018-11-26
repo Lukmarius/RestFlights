@@ -2,7 +2,7 @@ package com.codecool.restflights.Service.Implementations;
 
 import com.codecool.restflights.DAO.PassengersRepository;
 import com.codecool.restflights.Model.Passenger;
-import com.codecool.restflights.Service.Intarfaces.PassengerService;
+import com.codecool.restflights.Service.Interfaces.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
