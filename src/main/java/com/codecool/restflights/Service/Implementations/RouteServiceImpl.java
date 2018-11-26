@@ -55,5 +55,13 @@ public class RouteServiceImpl implements RouteService {
         return routesRepository.findAll(pageable);
     }
 
+    @Override
+    public void deleteById(long id) throws NullPointerException {
+//        safe delete:
+        Route route = routesRepository.findRouteByRelationId(id);
+        route.setActive(false);
+        routesRepository.save(route);
+    }
+
 
 }

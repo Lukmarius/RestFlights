@@ -43,15 +43,10 @@ public class RoutesRestController {
 
     @ResponseBody
     @GetMapping("")
-    public PagedResources<Page <Resource<Route>>> getAllRoutes(Pageable pageable, PagedResourcesAssembler pagedAssembler){
+    public PagedResources<Resource<Route>> getAllRoutes(Pageable pageable, PagedResourcesAssembler pagedAssembler){
 
-        Page <Resource<Route>> routes = routeService.findAllOnPage(pageable)
-                .map(resourceAssembler::toResource);
-
-        PagedResources<Page <Resource<Route>>> pagedResources = pagedAssembler.toResource(routes,
-                linkTo(RoutesRestController.class).slash("/").withSelfRel());
-
-        return pagedResources;
+        return (PagedResources<Resource<Route>>) pagedAssembler.toResource(
+                routeService.findAllOnPage(pageable).map(resourceAssembler::toResource));
     }
 
     @ResponseBody
@@ -62,5 +57,15 @@ public class RoutesRestController {
             throw new ResourceNotFoundException();
         }
         return resourceAssembler.toResource(route);
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+        try {
+            routeService.deleteById(id);
+        }catch (NullPointerException e){
+            throw new ResourceNotFoundException();
+        }
+        return ResponseEntity.noContent().build();
     }
 }

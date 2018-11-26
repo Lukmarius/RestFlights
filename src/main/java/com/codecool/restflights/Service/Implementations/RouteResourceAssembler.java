@@ -20,6 +20,7 @@ public class RouteResourceAssembler implements ResourceAssembler<Route, Resource
 
     @Override
     public Resource<Route> toResource(Route route) {
+
         return new Resource<Route>(route,
                 entityLinks.linkToSingleResource(Route.class, route.getRelationId()).withSelfRel(),
                 entityLinks.linkToSingleResource(Airport.class, route.getFromAirport()).withRel("from"),

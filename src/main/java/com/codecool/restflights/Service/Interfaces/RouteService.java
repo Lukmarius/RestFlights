@@ -14,5 +14,6 @@ public interface RouteService {
     Route findRouteByRelationId(long id);
     List<Route> findAllOnPage();
     Page<Route> findAllOnPage(Pageable pageable);
+    void deleteById(long id);
 
 }
