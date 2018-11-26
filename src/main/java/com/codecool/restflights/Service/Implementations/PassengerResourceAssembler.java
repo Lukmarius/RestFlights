@@ -13,8 +13,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class PassengerResourceAssembler implements ResourceAssembler<Passenger, Resource<Passenger>> {
 
+    private final EntityLinks entityLinks;
+
     @Autowired
-    EntityLinks entityLinks;
+    public PassengerResourceAssembler(EntityLinks entityLinks) {
+        this.entityLinks = entityLinks;
+    }
 
     @Override
     public Resource<Passenger> toResource(Passenger passenger) {
