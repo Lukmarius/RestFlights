@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
+import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.*;
@@ -24,8 +25,8 @@ import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
-
-@BasePathAwareController
+//@RequestMapping(value = "api/")
+@RepositoryRestController
 public class RoutesRestController {
 
     private RouteService routeService;
@@ -42,16 +43,18 @@ public class RoutesRestController {
     }
 
     @ResponseBody
-    @GetMapping("api/routes")
+    @GetMapping("/routes")
     public PagedResources<Resource<Route>> getAllRoutes(Pageable pageable, PagedResourcesAssembler pagedAssembler){
 
-        return (PagedResources<Resource<Route>>) pagedAssembler.toResource(
+        PagedResources<Resource<Route>> pagedResources = pagedAssembler.toResource(
                 routeService.findAllOnPage(pageable).map(resourceAssembler::toResource));
+        return pagedResources;
     }
 
     @ResponseBody
-    @GetMapping("api/routes/{id}")
+    @GetMapping("/routes/{id}")
     public Resource<Route> getRoute(@PathVariable long id){
+        System.out.println("OKOKOKOKOK");
         Route route = routeService.findRouteByRelationId(id);
         if (route == null){
             throw new ResourceNotFoundException();
@@ -59,7 +62,7 @@ public class RoutesRestController {
         return resourceAssembler.toResource(route);
     }
 
-    @DeleteMapping("api/routes/{id}")
+    @DeleteMapping("/routes/{id}")
     ResponseEntity<?> deleteRoute(@PathVariable Long id) {
         try {
             routeService.deleteById(id);

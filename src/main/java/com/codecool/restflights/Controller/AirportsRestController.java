@@ -21,7 +21,7 @@ public class AirportsRestController {
         this.airportsService = airportsService;
     }
 
-    @DeleteMapping("api/airports/{id}")
+    @DeleteMapping("/airports/{id}")
     ResponseEntity<?> deleteAirport(@PathVariable String id) {
         try {
             airportsService.deleteById(id);
