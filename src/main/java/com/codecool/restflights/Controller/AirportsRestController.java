@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@RepositoryRestController
-@RequestMapping(value = "api/airports")
+@BasePathAwareController
 public class AirportsRestController {
 
     private final AirportsService airportsService;
@@ -22,7 +21,7 @@ public class AirportsRestController {
         this.airportsService = airportsService;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("api/airports/{id}")
     ResponseEntity<?> deleteAirport(@PathVariable String id) {
         try {
             airportsService.deleteById(id);

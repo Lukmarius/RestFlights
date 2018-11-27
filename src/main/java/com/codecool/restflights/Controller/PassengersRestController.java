@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @BasePathAwareController
-@RequestMapping(value = "api/passengers/")
 public class PassengersRestController {
 
     private PassengerService passengerService;
@@ -28,7 +27,7 @@ public class PassengersRestController {
     }
 
     @ResponseBody
-    @GetMapping("{id}")
+    @GetMapping("api/passengers/{id}")
     public Resource<Passenger> getPassenger(@PathVariable(name = "id") long id){
         Passenger passenger = passengerService.findPassengerByPassengerId(id);
         if (passenger == null){
@@ -39,7 +38,7 @@ public class PassengersRestController {
     }
 
     @ResponseBody
-    @DeleteMapping("{id}")
+    @DeleteMapping("api/passengers/{id}")
     public void deletePassenger(@PathVariable(name = "id") long id){
         Passenger passenger = passengerService.findPassengerByPassengerId(id);
         if (passenger == null){

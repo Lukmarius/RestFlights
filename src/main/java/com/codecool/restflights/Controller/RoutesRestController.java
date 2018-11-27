@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
-@RequestMapping("api/routes")
+
 @BasePathAwareController
 public class RoutesRestController {
 
@@ -42,7 +42,7 @@ public class RoutesRestController {
     }
 
     @ResponseBody
-    @GetMapping("")
+    @GetMapping("api/routes")
     public PagedResources<Resource<Route>> getAllRoutes(Pageable pageable, PagedResourcesAssembler pagedAssembler){
 
         return (PagedResources<Resource<Route>>) pagedAssembler.toResource(
@@ -50,7 +50,7 @@ public class RoutesRestController {
     }
 
     @ResponseBody
-    @GetMapping("/{id}")
+    @GetMapping("api/routes/{id}")
     public Resource<Route> getRoute(@PathVariable long id){
         Route route = routeService.findRouteByRelationId(id);
         if (route == null){
@@ -59,7 +59,7 @@ public class RoutesRestController {
         return resourceAssembler.toResource(route);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("api/routes/{id}")
     ResponseEntity<?> deleteRoute(@PathVariable Long id) {
         try {
             routeService.deleteById(id);
