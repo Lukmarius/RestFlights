@@ -60,10 +60,11 @@ public class RoutesRestController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+    ResponseEntity<?> deleteRoute(@PathVariable Long id) {
         try {
             routeService.deleteById(id);
         }catch (NullPointerException e){
+            System.out.println("not found");
             throw new ResourceNotFoundException();
         }
         return ResponseEntity.noContent().build();
