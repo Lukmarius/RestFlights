@@ -4,8 +4,7 @@
 Spring Boot project including Rest Api which shows resources from database (postgres). 3 tables (from all 10 in DB): Airports, Routes (related on Airports) and Passengers have been already implemented at the moment.
 
 ## Features:
-* /2api/ - API generated automatically by RepositoryRestResource (without need of any implemented controller)
-* /api/ - API implemented by PassengerRestController and RoutesRestController
+* /api/ - API implemented by PassengerRestController and RoutesRestController (+ build in handlers from Spring Rest Repository)
 * ActivePassengerServiceImpl provides safe deleting resources after DELETE requests (only changing column 'Active' in DB)
 * links added in /api/routes/ which direct to concrete Airport resource
 * logging requests and statuses of responses into txt file
