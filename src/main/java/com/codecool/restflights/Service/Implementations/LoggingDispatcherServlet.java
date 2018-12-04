@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+/**
+ * Class aiming to put logs into console or file.
+ * Direction and options set in application.properties
+ */
 public class LoggingDispatcherServlet extends DispatcherServlet {
 
     private final Logger logger = Logger.getLogger(getClass());
