@@ -8,6 +8,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 @Configuration
 public class RepositoryConfiguration extends RepositoryRestConfigurerAdapter {
 
+//    exposing Id for API in airport objects
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.exposeIdsFor(Airport.class);

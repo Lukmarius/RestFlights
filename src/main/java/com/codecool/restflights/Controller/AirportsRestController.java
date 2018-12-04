@@ -21,6 +21,8 @@ public class AirportsRestController {
         this.airportsService = airportsService;
     }
 
+
+//    overring one method. others are handling by defoult rest repository
     @DeleteMapping("/airports/{id}")
     ResponseEntity<?> deleteAirport(@PathVariable String id) {
         try {

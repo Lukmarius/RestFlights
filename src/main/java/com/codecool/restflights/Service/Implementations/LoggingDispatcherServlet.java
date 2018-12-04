@@ -14,12 +14,12 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 public class LoggingDispatcherServlet extends DispatcherServlet {
 
     private final Logger logger = Logger.getLogger(getClass());
 
+//    dispatching requests and responses into logs
     @Override
     protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
         if (!(request instanceof ContentCachingRequestWrapper)) {
@@ -39,6 +39,8 @@ public class LoggingDispatcherServlet extends DispatcherServlet {
     }
 
     private void log(HttpServletRequest requestToCache, HttpServletResponse responseToCache, HandlerExecutionChain handler) {
+
+//        creating log String
         StringBuilder log = new StringBuilder();
 
         log.append(" ---- ");

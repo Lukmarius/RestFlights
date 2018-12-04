@@ -17,6 +17,7 @@ class RestMVCConfiguration {
     @Bean
     public RepositoryRestConfigurer repositoryRestConfigurer() {
 
+//        seting base path and rules for default rest repository exposing
         return new RepositoryRestConfigurerAdapter() {
 
             @Override

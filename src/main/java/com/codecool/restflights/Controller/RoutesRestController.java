@@ -25,23 +25,22 @@ import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
-//@RequestMapping(value = "api/")
+//@RequestMapping(value = "api/") - not allowed here
 @RepositoryRestController
 public class RoutesRestController {
 
     private RouteService routeService;
     private RouteResourceAssembler resourceAssembler;
-    private EntityLinks entityLinks;
 
     @Autowired
     public RoutesRestController(RouteService routeService,
-                                RouteResourceAssembler resourceAssembler,
-                                EntityLinks entityLinks) {
+                                RouteResourceAssembler resourceAssembler) {
         this.routeService = routeService;
         this.resourceAssembler = resourceAssembler;
-        this.entityLinks = entityLinks;
     }
 
+
+    //    overring these methods. others are handling by defoult rest repository
     @ResponseBody
     @GetMapping("/routes")
     public PagedResources<Resource<Route>> getAllRoutes(Pageable pageable, PagedResourcesAssembler pagedAssembler){
@@ -54,7 +53,6 @@ public class RoutesRestController {
     @ResponseBody
     @GetMapping("/routes/{id}")
     public Resource<Route> getRoute(@PathVariable long id){
-        System.out.println("OKOKOKOKOK");
         Route route = routeService.findRouteByRelationId(id);
         if (route == null){
             throw new ResourceNotFoundException();
