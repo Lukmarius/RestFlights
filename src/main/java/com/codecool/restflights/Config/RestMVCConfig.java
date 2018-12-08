@@ -11,7 +11,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 import org.springframework.web.servlet.DispatcherServlet;
 
 @Configuration
-class RestMVCConfiguration {
+class RestMVCConfig {
 
     // configuration of "/api" API, without controllers
     @Bean
