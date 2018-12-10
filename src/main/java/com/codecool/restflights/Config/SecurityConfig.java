@@ -27,10 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST"));
         configuration.setAllowCredentials(true);
-        configuration.addAllowedHeader("Authorization");
+        configuration.setAllowedHeaders(Arrays.asList("Authorization"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
@@ -38,15 +38,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors();
+//        http.cors();
         JwtWebSecurityConfigurer
                 .forRS256(apiAudience, issuer)
                 .configure(http)
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/airports").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/routes").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/search").authenticated()
-                .antMatchers(HttpMethod.GET, "/api/passengers").authenticated();
+                .antMatchers(HttpMethod.GET, "/api/airports")
+                .authenticated();
+//                .antMatchers(HttpMethod.GET, "/api/airports").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/routes").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/search").authenticated()
+//                .antMatchers(HttpMethod.GET, "/api/passengers").authenticated();
 //                .antMatchers(HttpMethod.GET, "/api/private-scoped").hasAuthority("read:messages");
     }
 }
