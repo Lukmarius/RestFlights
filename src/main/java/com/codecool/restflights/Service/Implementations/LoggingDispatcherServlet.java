@@ -37,6 +37,7 @@ public class LoggingDispatcherServlet extends DispatcherServlet {
 
         try {
             super.doDispatch(request, response);
+            response.setHeader("Access-Control-Allow-Origin", "*");
         } finally {
             log(request, response, handler);
             updateResponse(response);
@@ -54,7 +55,8 @@ public class LoggingDispatcherServlet extends DispatcherServlet {
         log.append(requestToCache.getMethod());
         log.append(" ---- ");
         log.append(requestToCache.getRequestURI());
-        log.append(" -");
+//        log.append(" - Header: ");
+//        log.append(requestToCache.getHeaders("Authorization"));
 //        log.append(requestToCache.getRemoteAddr());
 //        log.append(" ---- ");
 //        log.append(handler.toString());
