@@ -43,12 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .forRS256(apiAudience, issuer)
                 .configure(http)
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/airports")
-                .authenticated();
-//                .antMatchers(HttpMethod.GET, "/api/airports").permitAll()
-//                .antMatchers(HttpMethod.GET, "/api/routes").permitAll()
-//                .antMatchers(HttpMethod.GET, "/api/search").authenticated()
-//                .antMatchers(HttpMethod.GET, "/api/passengers").authenticated();
+                .antMatchers(HttpMethod.GET, "/api/airports").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/passengers").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/passengers").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/api/passengers").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/passengers").authenticated();
+
 //                .antMatchers(HttpMethod.GET, "/api/private-scoped").hasAuthority("read:messages");
     }
 }
