@@ -27,10 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "PUT"));
         configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(Arrays.asList("Authorization"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "content-type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
@@ -38,16 +38,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.cors();
+        http.cors();
         JwtWebSecurityConfigurer
                 .forRS256(apiAudience, issuer)
                 .configure(http)
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/airports").authenticated()
-                .antMatchers(HttpMethod.GET, "/api/passengers").permitAll()
-                .antMatchers(HttpMethod.PUT, "/api/passengers").authenticated()
-                .antMatchers(HttpMethod.PATCH, "/api/passengers").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/passengers").authenticated();
+                .anyRequest().authenticated();
+
+//                .antMatchers(HttpMethod.GET, "/api/airports").authenticated()
+//                .antMatchers(HttpMethod.GET, "/api/passengers").authenticated()
+//                .antMatchers(HttpMethod.PUT, "/api/passengers").authenticated()
+//                .antMatchers(HttpMethod.POST, "/api/passengers").authenticated();
 
 //                .antMatchers(HttpMethod.GET, "/api/private-scoped").hasAuthority("read:messages");
     }
